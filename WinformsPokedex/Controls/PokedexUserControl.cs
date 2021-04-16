@@ -2,13 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinformsPokedex.Controller;
 using WinformsPokedex.CustomViews;
 using WinformsPokedex.Models;
 
@@ -16,6 +13,8 @@ namespace WinformsPokedex.Controls
 {
     public partial class PokedexUserControl : UserControl
     {
+        private PokedexController pokedexController;
+
         private BackgroundWorker backgroundWorker1;
 
         private List<Pokemon> pokemons;
@@ -26,6 +25,7 @@ namespace WinformsPokedex.Controls
         public PokedexUserControl()
         {
             InitializeComponent();
+            pokedexController = new PokedexController();
             pokemons = new List<Pokemon>();
             loadingForm = new LoadingForm();
             backgroundWorker1 = new BackgroundWorker();
@@ -98,11 +98,11 @@ namespace WinformsPokedex.Controls
             {
                 for (int i = 1; i < 50; i++)
                 {
-                    pokemons.Add(await Program.HttpCall.GetPokemonCounts(i));
+                    var val = await Program.HttpCall.GetPokemonCounts(i);
+                    pokemons.Add(pokedexController.ConvertPokemon(val.ToString()));
                 }
 
                 PokemonListItem[] pokemonListItem = new PokemonListItem[pokemons.Count];
-
 
                 for (int i = 0; i < pokemons.Count; i++)
                 {

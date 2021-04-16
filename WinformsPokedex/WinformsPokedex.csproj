@@ -104,6 +104,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\PokedexController.cs" />
     <Compile Include="Controls\PokedexUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -176,8 +177,6 @@
     <Compile Include="Views\FormPokemonDetails.Designer.cs">
       <DependentUpon>FormPokemonDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="WebRequests\HttpCall.cs" />
-    <Compile Include="WebRequests\HttpHelper.cs" />
     <EmbeddedResource Include="Controls\PokedexUserControl.resx">
       <DependentUpon>PokedexUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,9 +234,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\wp2692431-misty-brock-ash-wallpapers.jpg" />
   </ItemGroup>
@@ -254,6 +251,12 @@
     <None Include="Resources\dots.png" />
     <None Include="Resources\cross.png" />
     <Content Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebHelper\WebHelper.csproj">
+      <Project>{63fa3e0f-768a-4fef-8e5d-96a5d3db12cb}</Project>
+      <Name>WebHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
